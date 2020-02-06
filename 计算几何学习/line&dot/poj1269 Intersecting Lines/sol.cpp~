@@ -1,0 +1,42 @@
+#include <cstdio>
+#include <cmath>
+
+using namespace std;
+
+const double eps = 1e-8;
+
+int dcmp(double x) {
+	return fabs(x) < eps ? 0 : (x < 0 ? -1 : 1));
+}
+
+struct pt {
+	double x, y;
+	pt(double X, double Y): x(X), y(Y) {}
+};
+typedef pt vec;
+
+vec rotate(vec v, double xt) {
+	return vec(v.x * cos(xt) - v.y * sin(xt), v.y * cos(xt) + v.x * sin(xt));
+}
+
+struct line {
+	pt p0;
+	vec v;
+	line(pt P0, vec V): p0(P0), v(V) {}
+};
+
+int main() {
+	int t;
+	scanf("%d", &t);
+	printf("INTERSECTING LINES OUTPUT\n");
+	while(t--) {
+		int x1, y1, x2, y2;
+		scanf("%d %d %d %d", &x1, &y1, &x2, &y2);
+		line l1(pt(x1 + eps, x2 + eps), rotate(vec(x2 - x1 + eps, y2 - y1 + eps), 1e-7));
+		scanf("%d %d %d %d", &x1, &y1, &x2, &y2);
+		line l2(pt(x1 + eps, x2 + eps), rotate(vec(x2 - x1 + eps, y2 - y1 + eps), 1e-7));
+		
+	}
+	printf("END OF OUTPUT\n");
+	return 0;
+}

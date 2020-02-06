@@ -1,0 +1,53 @@
+#include <bits/stdc++.h>
+
+using namespace std;
+
+const int maxn = 50010;
+const int _n = 50;          //[5, _n+5)
+const int _q = 50;
+const int _w = 100;
+
+struct edge{
+	int from, to;
+}e[maxn];
+
+inline int rd(int p) {
+	return (long long)rand() * rand() % p;
+}
+
+struct point{
+	int x, y;
+	point(int _x, int _y) : x(min(_x, _y)), y(max(_x, _y)) {}
+	bool operator < (const point& o) const {
+		return x < o.x;
+	}
+};
+
+map<point, int> G;
+
+inline void buildTree(int n) {
+	for(int i = 2; i <= n; i++) {
+		int _to = rd(i-1) + 1;
+		e[i-2] = (edge){i, _to};
+		G[point(i, _to)] = 1;
+	}
+	random_shuffle(e, e+n-1);
+}
+
+
+int main() {
+	srand((unsigned)time(0));
+	int n = rd(_n) + 5, q = rd(_q) + 1;
+	printf("%d %d\n", n, q);
+	buildTree(n);
+	for(int i = 0; i < n-1; i++) printf("%d %d\n", e[i].from, e[i].to);
+	for(int i = 1; i <= q; i++) {
+		int u = rd(_n) + 1, v = rd(_n) + 1, w = rd(_w) + 1;
+		while(u == v && G[point(u, v)]) {
+			u = rd(_n) + 1; v = rd(_n) + 1;
+		}
+		G[point(u, v)] = 1;
+		printf("%d %d %d\n", u, v, w);
+	}
+ 	return 0;
+}

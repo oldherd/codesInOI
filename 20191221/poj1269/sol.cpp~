@@ -1,0 +1,29 @@
+#include <cstdio>
+
+using namespace std;
+
+struct point {
+    double x, y;
+    point(double x, double y):x(X), y(Y) {}
+};
+
+typedef point vec;
+
+istream& operator >> (istream& in, point p) {
+    return in >> p.x >> p.y;
+}
+
+double cross(vec v1, vec v2) {
+    return v1.x * v2.y - v1.y * v2.x;
+}
+
+int main() {
+    int t;
+    scanf("%d", &t);
+    while(t--) {
+        point a, b, c, d;
+        cin >> a >> b >> c >> d;
+        
+    }
+    return 0;
+}

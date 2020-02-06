@@ -1,0 +1,24 @@
+#include <cstdio>
+#include <cstring>
+
+using namesapce std;
+
+const int maxn = 1234, maxm = 123456;
+int head[maxn], ver[maxm], wei[maxm], nex[maxm], tot;
+void addedge(int u, int v, int w) {
+    ver[tot] = v; wei[tot] = w; nex[tot] = head[u]; head[u] = tot++;
+}
+
+int main() {
+    memset(head, -1, sizeof(head));
+    int n, m, u, v, w;
+    scanf("%d %d", &n, &m);
+    for(int i = 1; i <= m; ++i) {
+        scanf("%d %d %d", &u, &v, &w);
+        addedge(u, v, w);
+        addedge(v + n, u + n, w);
+    }
+    dijkstra(1);
+    dijkstra(1 + n);
+    return 0;
+}

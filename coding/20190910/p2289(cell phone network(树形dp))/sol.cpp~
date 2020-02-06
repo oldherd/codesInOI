@@ -1,0 +1,23 @@
+#include <iostream>
+
+using namespace std;
+
+const int maxn = ;
+int head[maxn], ver[maxn<<1], nex[maxn<<1], ans[maxn][3], tot;
+inline void addedge(int u, int v) {
+	ver[tot] = v; nex[tot] = head[u]; head[u] = tot++;	
+}
+
+int main() {
+    ios::sync_with_stdio(false);
+    memset(head, -1, sizeof(head));
+    int n, u, v;
+    cin >> n;
+    for(int i = 1; i < n; i++) {
+	cin >> u >> v;
+	addedge(u, v);
+    }
+    dfs(1, 1);
+    
+    return 0;
+}
